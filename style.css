@@ -1,0 +1,367 @@
+/* --- VARIABLES GLOBALES (Paleta de colores) --- */
+:root {
+    --bg-color: #0f172a; /* Fondo azul muy oscuro */
+    --text-main: #f8fafc; /* Texto principal blanco/gris */
+    --text-muted: #94a3b8; /* Texto secundario grisáceo */
+    --accent-color: #38bdf8; /* Azul claro para botones y enlaces */
+    --card-bg: #1e293b; /* Fondo de las tarjetas de proyectos */
+}
+
+/* --- RESET Y ESTILOS BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Animación suave al hacer clic en el menú */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Obliga a la página a medir mínimo el 100% del alto de la pantalla */
+}
+
+/* --- NAVEGACIÓN --- */
+nav {
+    background-color: rgba(15, 23, 42, 0.9);
+    padding: 1rem 2rem;
+    position: fixed; /* Mantiene el menú arriba al hacer scroll */
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* --- SECCIONES GENERALES --- */
+section, header {
+    padding: 6rem 2rem 4rem; /* Espaciado interno */
+    max-width: 1000px;
+    margin: 0 auto; /* Centra el contenido */
+}
+
+h1, h2, h3 {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--card-bg);
+    padding-bottom: 0.5rem;
+}
+
+p, ul {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+/* --- ENCABEZADO (HOME) --- */
+#inicio {
+    text-align: center;
+    padding-top: 10rem;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inicio h1 {
+    font-size: 3.5rem;
+    color: var(--accent-color);
+}
+
+#inicio h2 {
+    font-size: 1.5rem;
+    border: none;
+    color: var(--text-main);
+    
+}
+
+/* Botones / Enlaces principales */
+#inicio a, .btn-contacto {
+    display: inline-block;
+    background-color: var(--card-bg);
+    color: var(--accent-color);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0.5rem;
+    border: 1px solid var(--accent-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 30px rgba(168, 85, 247, 0.15); 
+}
+
+#inicio a:hover, .btn-contacto:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--card-bg);
+    box-shadow: 0 6px 15px rgba(56, 189, 248, 0.15); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    margin: 0 auto 2rem auto;
+}
+
+.profile-img:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35); 
+}
+
+/* --- GRID DE PROYECTOS --- */
+.proyectos-grid {
+    display: grid;
+    /* AQUÍ ESTÁ EL CAMBIO: Forzamos exactamente 3 columnas del mismo tamaño */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* --- TRUCO RESPONSIVE (MÓVILES) --- */
+/* Como 3 columnas en un celular se verían súper aplastadas, le decimos 
+   al navegador que si la pantalla es pequeña, las ponga en 1 sola fila hacia abajo */
+@media (max-width: 800px) {
+    .proyectos-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* --- TARJETAS DE PROYECTOS --- */
+.proyecto-card {
+    background-color: var(--card-bg);
+    /* AQUÍ ESTÁ LA MAGIA: Quitamos el padding general */
+    padding: 0; 
+    border-radius: 8px;
+    border: 1px solid #334155;
+    overflow: hidden; 
+    box-shadow: 0 6px 15px rgba(168, 85, 247, 0.15); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Esto ayuda a que el botón siempre quede abajo si los textos son de distinto tamaño */
+    display: flex;
+    flex-direction: column; 
+}
+
+.proyecto-card:hover {
+    transform: translateY(-8px); 
+    border-color: var(--accent-color);
+    box-shadow: 0 12px 30px rgba(168, 85, 247, 0.15); 
+}
+
+/* --- ESTILO DE LA FOTO --- */
+.proyecto-img {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover; 
+    border-bottom: 1px solid #334155;
+}
+
+/* LE DAMOS EL ESPACIO SOLO A LOS TEXTOS */
+.proyecto-card h3, 
+.proyecto-card p, 
+.proyecto-card a {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.proyecto-card h3 {
+    color: var(--text-main);
+    margin-top: 1.5rem; 
+}
+
+.proyecto-card p {
+    flex-grow: 1; /* Empuja el enlace hacia abajo */
+}
+
+.proyecto-card a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 1rem; 
+    margin-bottom: 1.5rem; /* Espacio final antes de que acabe la tarjeta */
+}
+
+.proyecto-card a:hover {
+    text-decoration: underline;
+}
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    color: var(--text-muted);
+    margin-top: 3rem;
+}
+
+section, header {
+    /* Mantenemos el padding lateral, pero reducimos el superior e inferior por defecto */
+    padding: 2rem 2rem; 
+    max-width: 1000px;
+    margin: 0 auto; /* Centra el contenido */
+}
+
+#inicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Ajustes clave para el espacio */
+    min-height: 70vh;     /* Un poco menos de altura total */
+    padding-top: 8rem;    /* Espacio superior para el menú fijo */
+    padding-bottom: 0rem; /* ¡Eliminamos el espacio inferior del header! */
+}
+
+#sobre-mi {
+    /* Le damos un relleno superior pequeño para que no pegue con los botones del header */
+    padding-top: 1.5rem; 
+    padding-bottom: 4rem; /* Mantenemos el espacio inferior para la siguiente sección */
+}
+
+/* Asegurar que el título H2 no añada margen superior extra */
+#sobre-mi h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--card-bg);
+    padding-bottom: 0.5rem;
+}
+
+/*footer */
+
+.social-btn {
+    display: inline-block;
+    color: var(--text-main);
+    background-color: #334155;
+    padding: 1rem 2rem; 
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.3rem; 
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    transform: translateY(-5px);
+}
+
+/* --- ESTILO PARA LAS FOTOS DE LOS PROYECTOS (RECTANGULARES) --- */
+.proyecto-img {
+    width: 100%;        /* <-- ¡Esta es la clave! La imagen nunca será más ancha que la tarjeta */
+    height: 180px;       /* Altura fija para que todas las tarjetas se vean iguales */
+    object-fit: cover;   /* Recorta la imagen bonito para que no se estire feo */
+    display: block;      /* Elimina espacios en blanco extraños debajo */
+    border-bottom: 1px solid #334155; /* Una línea divisoria elegante */
+}
+/* --- ESPACIO PARA QUE EL MENÚ NO TAPE EL CONTENIDO --- */
+main {
+    /* Esto empuja todo el contenido del main hacia abajo. 
+       Si tu menú es más ancho, puedes subir este número a 100px o 120px */
+    padding-top: 80px; 
+    flex-grow: 1; /* Esto hace que el contenido central se expanda y empuje el footer hacia abajo */
+}
+
+/* =========================================================================
+   ANIMACIÓN DE ÍCONOS FLOTANTES (PÁGINA DE CONTACTO)
+   ========================================================================= */
+
+.animacion-tech {
+    display: grid;
+    /* Esto le dice que haga exactamente 4 columnas ajustadas a su contenido */
+    grid-template-columns: repeat(4, max-content); 
+    justify-content: center; /* Centra todo el bloque en la pantalla */
+    gap: 4rem; /* Espacio entre los íconos (tanto a los lados como arriba/abajo) */
+    margin-top: 5rem; 
+    font-size: 3.5rem; 
+}
+
+.icono {
+    /* Le damos un brillo morado sutil de fondo */
+    filter: drop-shadow(0 10px 15px rgba(168, 85, 247, 0.4));
+    
+    /* Esta línea llama a la animación que crearemos abajo */
+    animation: levitar 3s ease-in-out infinite;
+}
+
+/* Desfasamos los tiempos para el efecto ola */
+.anim-1 { animation-delay: 0s; }
+.anim-2 { animation-delay: 0.6s; }
+.anim-3 { animation-delay: 1.2s; }
+.anim-4 { animation-delay: 1.8s; }
+
+/* Nuevos íconos de la segunda fila */
+.anim-5 { animation-delay: 0.9s; }
+.anim-6 { animation-delay: 1.5s; }
+.anim-7 { animation-delay: 2.1s; }
+.anim-8 { animation-delay: 0.3s; }
+
+/* Los "Keyframes" son las instrucciones de movimiento */
+@keyframes levitar {
+    0% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-25px); /* Sube 25 píxeles a la mitad de la animación */
+    }
+    100% { 
+        transform: translateY(0px); /* Vuelve a su posición original */
+    }
+}
+/* =========================================================================
+   CONTENEDOR DE ÍCONOS (PÁGINA DE INICIO)
+   ========================================================================= */
+
+.animacion-inicio {
+    display: flex;
+    justify-content: center;
+    gap: 3rem; /* Espacio entre los íconos */
+    margin-top: auto; /* Separación del texto de tu perfil */
+    margin-bottom: 2rem; /* Espacio extra en la parte de abajo */
+    font-size: 3.5rem; /* Tamaño de los íconos */
+    padding-top: 2rem; 
+}
+
+/* En pantallas pequeñas (celulares), reducimos un poco el espacio para que quepan bien */
+@media (max-width: 600px) {
+    .animacion-inicio {
+        gap: 1.5rem;
+        font-size: 2.5rem;
+    }
+}
