@@ -345,7 +345,7 @@ main {
     }
 }
 /* =========================================================================
-   CONTENEDOR DE ÍCONOS (PÁGINA DE INICIO)
+   CONTENEDOR DE ÍCONOS Y TEXTOS (PÁGINA DE INICIO)
    ========================================================================= */
 
 .animacion-inicio {
@@ -358,10 +358,60 @@ main {
     padding-top: 2rem; 
 }
 
+.item-tech {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el texto justo debajo del ícono */
+    gap: 1rem; /* Espacio entre el emoji y las letras */
+}
+
+.texto-tech {
+    font-size: 16px; /* Forzamos un tamaño normal en píxeles */
+    color: #94a3b8; /* Un gris azulado claro muy moderno */
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap; /* Mantiene frases largas en una sola línea */
+    margin-top: -10px; /* Acerca un poquito el texto al ícono */
+}
+
 /* En pantallas pequeñas (celulares), reducimos un poco el espacio para que quepan bien */
 @media (max-width: 600px) {
     .animacion-inicio {
         gap: 1.5rem;
         font-size: 2.5rem;
+    }
+}
+/* =========================================================================
+   AJUSTES PARA CELULARES (DISEÑO MÓVIL)
+   ========================================================================= */
+
+@media (max-width: 600px) {
+    
+    /* 1. ARREGLO DEL MENÚ SUPERIOR (Evita que "Sobre Mí" se parta) */
+    nav ul {
+        gap: 1rem;
+    }
+    
+    nav ul li a {
+        font-size: 0.9rem;
+        white-space: nowrap; 
+    }
+
+    /* 2. ARREGLO DEL FOOTER (Cuadrícula 2x2) */
+    .redes-sociales { 
+        display: grid !important; 
+        grid-template-columns: 1fr 1fr; /* Crea exactamente dos columnas iguales */
+        gap: 10px; /* Espacio entre los botones */
+        padding: 0 15px; /* Evita que toquen los bordes de la pantalla */
+        width: 100%;
+        box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+    }
+
+    .social-btn {
+        width: 100%; /* Hace que el botón ocupe toda su columna */
+        justify-content: center; /* Centra el texto y el ícono */
+        font-size: 0.85rem; /* Achica un poco la letra para que quepan bien */
+        padding: 0.6rem 0.5rem;
+        box-sizing: border-box;
     }
 }
