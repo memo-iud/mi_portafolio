@@ -382,35 +382,91 @@ main {
     }
 }
 /* =========================================================================
-   AJUSTES PARA CELULARES (DISEÑO MÓVIL)
+   AJUSTES RESPONSIVOS (TABLETS Y CELULARES)
    ========================================================================= */
 
-@media (max-width: 600px) {
-    
-    /* 1. ARREGLO DEL MENÚ SUPERIOR (Evita que "Sobre Mí" se parta) */
+/* 📱 1. AJUSTES PARA TABLETS (Pantallas medianas, hasta 900px) */
+@media (max-width: 900px) {
+    /* Menú un poco más compacto */
     nav ul {
-        gap: 1rem;
+        gap: 1.5rem;
+    }
+
+    /* Achicamos proporcionalmente los textos principales */
+    header h1 {
+        font-size: 3rem; 
+    }
+    header h2, header h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Juntamos un poco los íconos para que no se separen tanto */
+    .animacion-inicio {
+        gap: 1.5rem; 
+        font-size: 2.8rem;
     }
     
+    .texto-tech {
+        font-size: 14px;
+    }
+}
+
+/* 📱 2. AJUSTES PARA CELULARES (Pantallas pequeñas, hasta 600px) */
+@media (max-width: 600px) {
+    
+    /* Menú superior (evita que se parta) */
+    nav ul {
+        gap: 0.8rem;
+    }
     nav ul li a {
         font-size: 0.9rem;
         white-space: nowrap; 
     }
 
-    /* 2. ARREGLO DEL FOOTER (Cuadrícula 2x2) */
-    .redes-sociales { 
-        display: grid !important; 
-        grid-template-columns: 1fr 1fr; /* Crea exactamente dos columnas iguales */
-        gap: 10px; /* Espacio entre los botones */
-        padding: 0 15px; /* Evita que toquen los bordes de la pantalla */
-        width: 100%;
-        box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+    /* Textos principales (¡Para que no se vean gigantes en la pantallita!) */
+    header h1 {
+        font-size: 2.2rem !important; 
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+    header h2, header h3 {
+        font-size: 1.1rem !important; 
+        padding: 0 10px;
+        line-height: 1.4;
+    }
+    header p {
+        font-size: 0.95rem; 
+        padding: 0 15px;
     }
 
+    /* Íconos de tecnología (Evita que "Machine Learning" se salga) */
+    .animacion-inicio {
+        gap: 0.8rem !important; 
+        font-size: 2rem !important; 
+    }
+    .item-tech {
+        gap: 0.5rem; /* Acerca el texto al ícono */
+    }
+    .texto-tech {
+        font-size: 11px !important; 
+        white-space: normal !important; /* Permite que el texto baje a dos líneas si no cabe */
+        line-height: 1.2;
+        margin-top: 0;
+    }
+
+    /* Footer (La cuadrícula 2x2 que ya quedó perfecta) */
+    .redes-sociales { 
+        display: grid !important; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px; 
+        padding: 0 15px; 
+        width: 100%;
+        box-sizing: border-box; 
+    }
     .social-btn {
-        width: 100%; /* Hace que el botón ocupe toda su columna */
-        justify-content: center; /* Centra el texto y el ícono */
-        font-size: 0.85rem; /* Achica un poco la letra para que quepan bien */
+        width: 100%; 
+        justify-content: center; 
+        font-size: 0.85rem; 
         padding: 0.6rem 0.5rem;
         box-sizing: border-box;
     }
